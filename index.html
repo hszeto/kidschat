@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Kiddie Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=Acme' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css"  >
+</head>
+
+<body>
+  <center><h1>Kids' Chat Box</h1></center>
+
+    <div class="col-md-4">
+    <div class="statusbox">
+      <div id = "status">
+      </div>
+      <div>
+        <ul id = "chatters"></ul>
+      </div>
+    </div>
+    </div>
+
+    <div class="col-md-8">
+      <div class = "chatbox">
+        <ul id = "messages"></ul><br>
+      </div>
+
+      <div class = "chatbox2">
+          <form class = "chatform" action = "">
+            <input class = "chatinput" id = "m" autocomplete = "off" />
+              <button class = "chatbutton">Send</button>
+          </form>
+      </div>
+    </div>
+
+
+<!-- ALL THE SCRIPT -->
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  var socket = io();
+  // listen for message submittion
+  $('form').submit(function(){
+
+    // Check for bad words. SORRY!!!!
+    var badWords = ["fuck", "fnck", "shit", "dick", "moron", "bitch", "butt", "jerk"];
+    for (var f=0; f<badWords.length; f++){
+      if ($('#m').val().replace(/\s+/g, '').toLowerCase().indexOf(badWords[f]) >= 0 ){
+         $('#m').val("HELLO");
+      }
+    };
+    // SEND new message to server
+    socket.emit('chat message', $('#m').val());
+    // clear input
+    $('#m').val('');
+    return false;
+  });
+
+  // LISTEN for messages from server
+  socket.on('chat message', function(msg){
+    // append message from server to chat box
+    $('#messages').append($('<li>').text(msg));
+  });
+
+  //LISTEN from user list from server
+  //Who's Online
+  socket.on('active users', function(user){
+    $('#chatters').empty();   // empty list
+    user.map(function(y){     // append new list
+      $('#chatters').append($('<li>'+y.name+'</li>'));
+    });
+  });
+
+  // prompt for user name
+  socket.on('connect', function(data){
+    username = prompt("What is your name?");
+    socket.emit('join', username);
+    $('#status').html("Online");
+  });
+
+</script>
+
+</body>
+</html>

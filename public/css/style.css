@@ -1,0 +1,76 @@
+body { 
+  font-family: 'Acme', sans-serif;
+  background: url(cartoon-wallpaper.jpg);
+  background-repeat: no-repeat;
+}
+
+.statusbox {
+  font-size: 1.5em;
+  border: 2px dashed yellow;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.3); 
+  overflow: auto;
+  width: 50%;
+  padding-left: 5px;
+  margin-left: 100px;
+}
+
+ul{
+  list-style:none;
+}
+
+.chatbox {
+  width: 70%;
+  height: 400px;
+  /*margin: 0 auto;*/
+  border: 2px dashed green;
+  border-radius: 15px;
+  background: rgba(255,255,255,0.3); 
+  overflow: scroll;
+}
+
+.chatbox2 {
+  width: 70%;
+  /*margin: 0 auto;*/
+  border-radius: 15px;
+}
+
+.chatform { 
+  width: 100%; 
+  background: red; 
+  border-radius: 15px;
+  padding: 8px; 
+  bottom: 0px;
+
+}
+
+.chatinput { 
+  border: 0; 
+  padding: 10px; 
+  margin-left: 5px;
+  width: 87%;
+}
+
+.chatbutton { 
+  /*width: 9%; */
+  background: rgb(130, 224, 255); 
+  border: none; 
+  /*margin: 0 auto;*/
+  padding: 10px; 
+}
+
+#messages { 
+  list-style-type: none; 
+  margin: 0; 
+  padding: 0; 
+}
+
+#messages li { 
+  padding: 5px 10px; 
+  color: white;
+}
+
+#messages li:nth-child(even) { 
+  background: #eee; 
+  color: black;
+}
