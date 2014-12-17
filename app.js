@@ -70,5 +70,5 @@ io.on('connection', function(client){
 });
 
 // Listen //
-server.listen(9999);
+server.listen(port);
 console.log("Server is running!");
