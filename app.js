@@ -7,7 +7,7 @@ var http 		= require('http'),
 var server 		= http.Server(app);
 var io	 		= require('socket.io')(server);
 
-var public_path = require('path')
+var public_path = require('path');
 
 // Routing //
 app.use(express.static(public_path.join(__dirname, 'public')));
@@ -70,5 +70,5 @@ io.on('connection', function(client){
 });
 
 // Listen //
-server.listen(port);
+server.listen(9999);
 console.log("Server is running!");
