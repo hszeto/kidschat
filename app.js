@@ -2,7 +2,7 @@
 var http 		= require('http'),
 	express 	= require('express'),
 	app			= express(),
-	port		= process.env.PORT || 9999;
+	port		= process.env.PORT || 3000;
 
 var server 		= http.Server(app);
 var io	 		= require('socket.io')(server);
@@ -70,5 +70,5 @@ io.on('connection', function(client){
 });
 
 // Listen //
-server.listen(9999);
+server.listen(port);
 console.log("Server is running!");
